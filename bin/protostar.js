@@ -32,7 +32,7 @@ var runtime = require(__dirname + "/../lib/runtime");
 var protostardust = require(__dirname + "/../lib/protostardust");
 var templateComposer = require(__dirname + "/../lib/templateComposer");
 var protostarProject = require(__dirname + "/../lib/protostarProject");
-var portalThemeMerger = require(__dirname + "/../lib/portalThemeMerger");
+// var portalThemeMerger = require(__dirname + "/../lib/portalThemeMerger");
 /**
  *
  * @return {Object.<String,String|Number>}
@@ -150,50 +150,52 @@ function buildProject(){
 }
 
 function mergeStatic(){
-    var composer = new (templateComposer.TemplateComposer)({
-        runtime: rt
-    });
-    var project = new protostarProject.Project({
-        runtime: rt,
-        composer: composer
-    });
-    portalThemeMerger.mergeStatic({
-        targetDir: rt.getTargetDirPath(),
-        projectPath: rt.constructProjectPath('.'),
-        runtime: rt,
-        composer: composer,
-        project: project
-    }).then(function () {
-        logger.info("Successfully merged static files to "  + rt.getTargetDirPath());
-    }, function () {
-        logger.error("Errer during merge of static files to " + rt.getTargetDirPath(), arguments);
-    }).catch(function (errors) {
-        logger.error("Errer during merge of static files to " + rt.getTargetDirPath(), arguments);
-    });
+    throw new Error();
+    // var composer = new (templateComposer.TemplateComposer)({
+    //     runtime: rt
+    // });
+    // var project = new protostarProject.Project({
+    //     runtime: rt,
+    //     composer: composer
+    // });
+    // portalThemeMerger.mergeStatic({
+    //     targetDir: rt.getTargetDirPath(),
+    //     projectPath: rt.constructProjectPath('.'),
+    //     runtime: rt,
+    //     composer: composer,
+    //     project: project
+    // }).then(function () {
+    //     logger.info("Successfully merged static files to "  + rt.getTargetDirPath());
+    // }, function () {
+    //     logger.error("Errer during merge of static files to " + rt.getTargetDirPath(), arguments);
+    // }).catch(function (errors) {
+    //     logger.error("Errer during merge of static files to " + rt.getTargetDirPath(), arguments);
+    // });
 }
 
 function merge(){
-    var composer = new (templateComposer.TemplateComposer)({
-        runtime: rt
-    });
-    var project = new protostarProject.Project({
-        runtime: rt,
-        composer: composer
-    });
-    portalThemeMerger.merge({
-        targetDir: rt.getTargetDirPath(),
-        projectPath: rt.constructProjectPath('.'),
-        themePath: rt.getThemeDirPath(),
-        runtime: rt,
-        composer: composer,
-        project: project
-    }).then(function () {
-        logger.info("Successfully merged to "  + rt.getTargetDirPath());
-    }, function () {
-        logger.error("Errer during merge to " + rt.getTargetDirPath(), arguments);
-    }).catch(function (errors) {
-        logger.error("Errer during merge to " + rt.getTargetDirPath(), arguments);
-    });
+    throw new Error();
+    // var composer = new (templateComposer.TemplateComposer)({
+    //     runtime: rt
+    // });
+    // var project = new protostarProject.Project({
+    //     runtime: rt,
+    //     composer: composer
+    // });
+    // portalThemeMerger.merge({
+    //     targetDir: rt.getTargetDirPath(),
+    //     projectPath: rt.constructProjectPath('.'),
+    //     themePath: rt.getThemeDirPath(),
+    //     runtime: rt,
+    //     composer: composer,
+    //     project: project
+    // }).then(function () {
+    //     logger.info("Successfully merged to "  + rt.getTargetDirPath());
+    // }, function () {
+    //     logger.error("Errer during merge to " + rt.getTargetDirPath(), arguments);
+    // }).catch(function (errors) {
+    //     logger.error("Errer during merge to " + rt.getTargetDirPath(), arguments);
+    // });
 }
 
 function devServe(){
