@@ -5,7 +5,7 @@ var utils = require("../lib/utils");
 //var _fs = require("fs");
 var path = require("path");
 //var templatesParent =path.join(testUtils.getTestProjectDir(), "component") + "/";
-var fotlLorem = require("../lib/fotl-lorem");
+var fotlLorem = require("../lib/fotl/fotl-lorem");
 //function newTemplateComposer(projDir){
 //    var h = tc.createTemplateComposer({
 //        runtime: testUtils.createTestRuntime(projDir)
