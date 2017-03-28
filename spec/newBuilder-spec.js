@@ -4,7 +4,7 @@ const Project = require('../lib/protostarProject');
 const TemplateComposer = require('../lib/templateComposer');
 describe('NewBuilder', function(){
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
-    it('can build a project', function(done){
+    fit('can build a project', function(done){
         let r = new ProtostarRuntime({
             protostarDirPath : '/home/spectre/Projects/WUIPT',
             projectDirPath : '/home/spectre/Projects/WUIPT/projects/sample',
@@ -36,7 +36,7 @@ describe('NewBuilder', function(){
             done();
         })
     });
-    fit('can build a project to ZIP', function(done){
+    it('can build a project to ZIP', function(done){
         let r = new ProtostarRuntime({
             protostarDirPath : '/home/spectre/Projects/WUIPT',
             projectDirPath : '/home/spectre/Projects/WUIPT/projects/sample',
