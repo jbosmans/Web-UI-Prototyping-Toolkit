@@ -70,12 +70,17 @@ var parseCommandLineArgs = function () {
     switch (firstArg) {
         case 'help':
             o.mode = 'help';
-            o.helpMessage = 'Usage: protostar <command> <args>\n' +
-                'Following commands are available:\n' +
-                'protostar help                                    Displays this help\n' +
-                'protostar dev <projectDir>                        Starts the Protostar development environment with the project directory at <projectDir>\n' +
-                'protostar build <projectDir> <targetDir>          Creates a prebuilt version of the project located at directory <projectDir> at given <targetDir>\n' +
-                'protostar create <templateName> <newProjectDir>   Creates a new project directory at <newProjectDir> using passed <templateName>';
+            o.helpMessage =
+`Usage: <command> <args>
+Following commands are available:
+protostar help
+  Displays this help
+protostar dev <projectDir>
+  Starts the Protostar development environment with the project directory at <projectDir>
+protostar build <projectDir> <targetDir>
+  Creates a statically compiled version of the project at <projectDir> to (new) target dir <targetDir>
+protostar create <templateName> <newProjectDir>
+  Creates a new project directory at <newProjectDir> by starting from <templateName>`;
             break;
         case 'create':
             o.mode = 'create',
@@ -154,6 +159,10 @@ var parseCommandLineArgs = function () {
 
 var args = parseCommandLineArgs();
 args.launchTime = launchTime;
+if(args.mode === 'help'){
+    console.log(args.helpMessage);
+    return;
+}
 var rt = new ProtostarRuntime(args);
 
 function newProjectFromTemplate(){
@@ -237,6 +246,7 @@ function launch(){
     if(rt.mode === 'create'){
         newProjectFromTemplate();
     }else if(rt.mode === 'help'){
+        console.log(args.helpMessage);
 
     }else if(rt.mode === "build"){
         buildProject();
