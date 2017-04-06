@@ -2,7 +2,7 @@ var fs = require("../lib/filesystem");
 var path = require("path");
 describe("filesystem", function(){
     it("should return a promise", function(done){
-        fs.readFile(path.join(__dirname, "../package.json")).done(function(json){
+        fs.readFile(path.join(__dirname, "../package.json")).then(function(json){
             var parsed = JSON.parse(json);
             expect(parsed.name).toBe("wuipt");
             done();
@@ -11,7 +11,7 @@ describe("filesystem", function(){
         })
     });
     it("should catch an error", function(done){
-        fs.readFile(path.join(__dirname, "../package.jsonz")).done(function(json){
+        fs.readFile(path.join(__dirname, "../package.jsonz")).then(function(json){
             //var parsed = JSON.parse(json);
             //expect(parsed.name).toBe("wuipt");
             //done();

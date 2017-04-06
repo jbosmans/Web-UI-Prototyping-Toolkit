@@ -71,8 +71,8 @@ describe('NewBuilder', function(){
 });
 describe('portal merger', function(){
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
-    fit('can merge static theme files from a prototype', function(done){
-        let portalThemeMerger = require('../lib/portalThemeMerger');
+    it('can merge static theme files from a prototype', function(done){
+        let PortalThemeMerger = require('../lib/portalThemeMerger');
         let r = new ProtostarRuntime({
             protostarDirPath : '/home/spectre/Projects/WUIPT',
             projectDirPath : '/home/spectre/Projects/WUIPT/projects/sample',
@@ -86,13 +86,14 @@ describe('portal merger', function(){
             runtime: r,
             composer : c
         });
-        portalThemeMerger.mergeStatic({
+        let portalThemeMerger = new PortalThemeMerger({
             targetDir: '/tmp/testMergeStatic',
             projectPath: '/home/spectre/Projects/WUIPT/projects/sample',
             runtime: r,
             composer: c,
             project: p
-        }).then(function () {
+        });
+        portalThemeMerger.mergeStatic().then(function () {
             console.info("Successfully merged static files to "  + '/tmp/testMergeStatic');
             done();
         }, function () {

@@ -19,7 +19,7 @@
 var utils = require("../lib/utils");
 var Placeholder = require('../lib/Placeholder');
 var path = require("path");
-
+var fs = require("fs");
 describe("util functions", function(){
     var urls = [
         'js/dev/jquery-1.11.1.js',
@@ -117,5 +117,15 @@ describe("util functions", function(){
         }
         expect(getArgsObjectWhenByOrder).toThrow();
     });
-
+    fit('can promisify a node style callback fn', function(done){
+        (utils.promisify(fs.readdir))('/home/spectre').then((files) => {
+            console.log("ok!")
+            expect(files.length > 0).toBe(true);
+            console.log("Found " + files.length + " files");
+            done();
+        }, () => {
+            console.log("doh")
+            done();
+        })
+    })
 });

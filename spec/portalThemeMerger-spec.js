@@ -1,12 +1,12 @@
-var path = require("path");
+const path = require("path");
 //var protostarBuilder = require("../lib/protostarBuilder");
-var testUtils = require("../lib/testUtils");
-var utils = require("../lib/utils");
-var Project = require("../lib/protostarProject");
-var TemplateComposer = require("../lib/templateComposer");
-var protostarBuilder = require("../lib/protostarBuilder");
-var portalThemeMerger = require("../lib/portalThemeMerger");
-var originalTimeout;
+const testUtils = require("../lib/testUtils");
+
+const Project = require("../lib/protostarProject");
+const TemplateComposer = require("../lib/templateComposer");
+const protostarBuilder = require("../lib/protostarBuilder");
+const PortalThemeMerger = require("../lib/portalThemeMerger");
+let originalTimeout;
 
 //if(false)
 describe("portalThemeMerger", function(){
@@ -16,33 +16,32 @@ describe("portalThemeMerger", function(){
     });
 
     xit("can run", function(done){
-        var dsvPrototypePath = '/home/spectre/Projects/IBM/DSV/mydsv-protostar/mydsv';
-        var dsvThemePath = '/home/spectre/Projects/IBM/DSV/angularTheme';
+        const dsvPrototypePath = '/home/spectre/Projects/IBM/DSV/mydsv-protostar/mydsv';
+        const dsvThemePath = '/home/spectre/Projects/IBM/DSV/angularTheme';
 
         //var sampleProjectPath = path.join(__dirname, "../projects/sample")
-        var runtime = testUtils.createTestRuntime(dsvPrototypePath);
-        var targetDir = "/tmp/psMergeThemeTest_" + (new Date().getTime());
+        const runtime = testUtils.createTestRuntime(dsvPrototypePath);
+        const targetDir = "/tmp/psMergeThemeTest_" + (new Date().getTime());
         runtime.targetDirPath = targetDir;
         runtime.targetDir = targetDir;
-        var composer = new TemplateComposer({
-            runtime : runtime
+        const composer = new TemplateComposer({
+            runtime: runtime
         });
-        var project = new Project({
-            runtime:runtime,
-            composer:composer
-        });
-
-
-
-        var builder = protostarBuilder.createBuilder({
-            runtime : runtime,
-            project : project,
-            composer :composer,
-            targetDir : targetDir,
-            ignoreExcludeFromBuild : false
+        const project = new Project({
+            runtime: runtime,
+            composer: composer
         });
 
-        portalThemeMerger.merge({
+
+
+        const builder = protostarBuilder.createBuilder({
+            runtime: runtime,
+            project: project,
+            composer: composer,
+            targetDir: targetDir,
+            ignoreExcludeFromBuild: false
+        });
+        let portalThemeMerger = new PortalThemeMerger({
             targetDir : targetDir,
             projectPath : dsvPrototypePath,
             themePath : dsvThemePath,
@@ -50,31 +49,13 @@ describe("portalThemeMerger", function(){
             composer:composer,
             project:project,
             builder:builder
-        }).then(function(){
+        });
+        portalThemeMerger.merge().then(function(){
             console.log("success");
             done();
         }).catch(function(){
             console.log("error ::: ",errors);
             done();
         });
-
-
-        //builder.createZipBuild(function(zip, targetDir, dirName){
-        //    console.log("TARGET DIR = "+ targetDir)
-        //    console.log("dirName = "+ dirName);
-        //    zip.writeZip(targetDir + ".zip");
-        //    var foundCss = false;
-        //    zip.getEntries().forEach(function(e){
-        //        console.log(e.name);
-        //        if(e.name.toString() === 'styles.less-readable.css'){
-        //            foundCss = true;
-        //        }
-        //    });
-        //    expect(foundCss).toBe(true);
-        //    done();
-        //}, function(error){
-        //    console.error("BUILD ERRORS", error.stack);
-        //    done();
-        //});
     });
 });

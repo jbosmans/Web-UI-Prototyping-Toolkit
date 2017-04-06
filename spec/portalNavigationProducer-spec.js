@@ -1,8 +1,6 @@
 var pnp = require("../lib/portalNavigationProducer");
 var TemplateComposer = require("../lib/templateComposer");
-var fs = require("../lib/filesystem");
 var testUtils = require("../lib/testUtils");
-var utils = require("../lib/utils");
 var path = require("path");
 var Project = require("../lib/protostarProject");
 

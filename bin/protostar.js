@@ -51,7 +51,7 @@ var ProtostarRuntime = require(__dirname + "/../lib/runtime");
 var ProtoStarServer = require(__dirname + "/../lib/protostardust");
 var TemplateComposer = require(__dirname + "/../lib/templateComposer");
 var Project = require(__dirname + "/../lib/protostarProject");
-var portalThemeMerger = require(__dirname + "/../lib/portalThemeMerger");
+var PortalThemeMerger = require(__dirname + "/../lib/portalThemeMerger");
 
 /**
  *
@@ -189,13 +189,14 @@ function mergeStatic(){
         runtime: rt,
         composer: composer
     });
-    portalThemeMerger.mergeStatic({
+    var portalThemeMerger = new PortalThemeMerger({
         targetDir: rt.getTargetDirPath(),
         projectPath: rt.constructProjectPath('.'),
         runtime: rt,
         composer: composer,
         project: project
-    }).then(function () {
+    });
+    portalThemeMerger.mergeStatic().then(function () {
         logger.info("Successfully merged static files to "  + rt.getTargetDirPath());
     }, function () {
         logger.error("Errer during merge of static files to " + rt.getTargetDirPath(), arguments);
@@ -212,14 +213,15 @@ function merge(){
         runtime: rt,
         composer: composer
     });
-    portalThemeMerger.merge({
+    var portalThemeMerger = new PortalThemeMerger({
         targetDir: rt.getTargetDirPath(),
         projectPath: rt.constructProjectPath('.'),
         themePath: rt.getThemeDirPath(),
         runtime: rt,
         composer: composer,
         project: project
-    }).then(function () {
+    });
+    portalThemeMerger.mergeProject().then(function () {
         logger.info("Successfully merged to "  + rt.getTargetDirPath());
     }, function () {
         logger.error("Errer during merge to " + rt.getTargetDirPath(), arguments);

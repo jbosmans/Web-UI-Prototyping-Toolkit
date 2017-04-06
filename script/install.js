@@ -39,7 +39,7 @@ function createLaunchers() {
 
 var bu = new BowerUtils(psdir);
 
-bu.runBower(getPsPath("node_modules/bower/bin/bower"), nodeCommandPath).done(function () {
+bu.runBower(getPsPath("node_modules/bower/bin/bower"), nodeCommandPath).then(function () {
     var def = kew.defer();
     (def.makeNodeResolver())();
     def.promise.then(function () {
