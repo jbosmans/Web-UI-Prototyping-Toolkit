@@ -1,8 +1,8 @@
-const NewBuilder = require('../lib/NewBuilder');
+const StaticBuilder = require('../lib/StaticBuilder');
 const ProtostarRuntime = require('../lib/runtime');
 const Project = require('../lib/protostarProject');
 const TemplateComposer = require('../lib/templateComposer');
-describe('NewBuilder', function(){
+describe('StaticBuilder', function(){
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
     it('can build a project', function(done){
         let r = new ProtostarRuntime({
@@ -19,7 +19,7 @@ describe('NewBuilder', function(){
             composer : c
         });
 
-        let b = new NewBuilder({
+        let b = new StaticBuilder({
             runtime : r,
             project : p,
             composer : c,
@@ -51,7 +51,7 @@ describe('NewBuilder', function(){
             composer : c
         });
 
-        let b = new NewBuilder({
+        let b = new StaticBuilder({
             runtime : r,
             project : p,
             composer : c,
@@ -71,7 +71,7 @@ describe('NewBuilder', function(){
 });
 describe('portal merger', function(){
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
-    it('can merge static theme files from a prototype', function(done){
+    fit('can merge static theme files from a prototype', function(done){
         let PortalThemeMerger = require('../lib/portalThemeMerger');
         let r = new ProtostarRuntime({
             protostarDirPath : '/home/spectre/Projects/WUIPT',

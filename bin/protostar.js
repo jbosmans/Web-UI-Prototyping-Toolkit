@@ -52,6 +52,7 @@ var ProtoStarServer = require(__dirname + "/../lib/protostardust");
 var TemplateComposer = require(__dirname + "/../lib/templateComposer");
 var Project = require(__dirname + "/../lib/protostarProject");
 var PortalThemeMerger = require(__dirname + "/../lib/portalThemeMerger");
+var StaticBuilder = require(__dirname + "/../lib/StaticBuilder");
 
 /**
  *
@@ -173,11 +174,19 @@ function newProjectFromTemplate(){
 }
 
 function buildProject(){
-    var buildHelper = new ProtoStarServer({
+    var srv = new ProtoStarServer({
         runtime: rt
     });
-    buildHelper.buildPrototype(rt.targetDirPath, function () {
+    var builder = new StaticBuilder({
+        runtime: srv.runtime,
+        project: srv.project,
+        composer: srv.composer,
+        targetDir : rt.targetDirPath
+    });
+    builder.buildPrototype().then(function () {
         logger.info("Finished building " + rt.constructProjectPath("") + " => " + rt.getTargetDirPath());
+    }, function () {
+        logger.error("Failed to build " + rt.constructProjectPath("") + " => " + rt.getTargetDirPath())
     });
 }
 

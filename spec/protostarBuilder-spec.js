@@ -1,13 +1,12 @@
 var path = require("path");
-var protostarBuilder = require("../lib/protostarBuilder");
+var StaticBuilder = require('../lib/StaticBuilder');
 var testUtils = require("../lib/testUtils");
-var utils = require("../lib/utils");
 var Project = require("../lib/protostarProject");
 var TemplateComposer = require("../lib/templateComposer")
 var fs = require("fs");
 var originalTimeout;
 if(false)
-describe("protostarBuilder", function(){
+describe("StaticBuilder", function(){
     beforeEach(function() {
         originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
         jasmine.DEFAULT_TIMEOUT_INTERVAL = 20000;
@@ -27,7 +26,7 @@ describe("protostarBuilder", function(){
             composer:composer
         });
 
-        var builder = protostarBuilder.createBuilder({
+        var builder = new StaticBuilder({
             runtime : runtime,
             project : project,
             composer :composer,

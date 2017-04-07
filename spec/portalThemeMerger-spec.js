@@ -1,10 +1,9 @@
 const path = require("path");
-//var protostarBuilder = require("../lib/protostarBuilder");
 const testUtils = require("../lib/testUtils");
 
 const Project = require("../lib/protostarProject");
 const TemplateComposer = require("../lib/templateComposer");
-const protostarBuilder = require("../lib/protostarBuilder");
+const StaticBuilder = require('../lib/StaticBuilder');
 const PortalThemeMerger = require("../lib/portalThemeMerger");
 let originalTimeout;
 
@@ -34,7 +33,7 @@ describe("portalThemeMerger", function(){
 
 
 
-        const builder = protostarBuilder.createBuilder({
+        const builder = new StaticBuilder({
             runtime: runtime,
             project: project,
             composer: composer,
@@ -50,7 +49,7 @@ describe("portalThemeMerger", function(){
             project:project,
             builder:builder
         });
-        portalThemeMerger.merge().then(function(){
+        portalThemeMerger.mergeProject().then(function(){
             console.log("success");
             done();
         }).catch(function(){
