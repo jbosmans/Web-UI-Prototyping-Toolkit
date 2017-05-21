@@ -51,8 +51,6 @@
     "handlebars": "^4.0",
     "html-entities": "^1.0.10",
     "jade": "^1.9.2",
-    "js-beautify": "^1.6.12",
-    "kew": "^0.7.0",
     "less": "^2.7.2",
     "marked": "^0.3.2",
     "mime": "x",
